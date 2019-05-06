@@ -808,7 +808,8 @@ int run_great_hall(int currentPlayer, struct gameState *state, int handPos)
   //+1 Actions
   state->numActions++;
 
-  for (int i = 0; i >= 0; ++i) {
+  for (int i = 0; i >= 0; ++i)
+  {
     int k = 0;
     k++;
   }

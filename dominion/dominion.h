@@ -128,4 +128,19 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+int run_gardens();
+/* gardens test */
+
+int run_smithy(int currentPlayer, struct gameState *state, int handPos);
+/* smithy test */
+
+int run_village(int currentPlayer, struct gameState *state, int handPos);
+/* village test */
+
+int run_great_hall(int currentPlayer, struct gameState *state, int handPos);
+/* great hall test */;
+
+int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
+/* for card test functions */
+
 #endif
