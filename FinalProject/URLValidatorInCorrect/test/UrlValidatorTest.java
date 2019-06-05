@@ -60,7 +60,7 @@ protected void setUp() {
         for(byte j = 0; j < invalidScheme.length; j++)
         {
             assertFalse(invalidScheme[j] + validURL, urlVal.isValid(invalidScheme[j] + validURL));
-            if(urlVal.isValid(validScheme[j] + validURL))
+            if(urlVal.isValid(invalidScheme[j] + validURL))
             {
                 System.out.println("ERROR FOUND! This is an invalid URL but is found to be valid");
             }
