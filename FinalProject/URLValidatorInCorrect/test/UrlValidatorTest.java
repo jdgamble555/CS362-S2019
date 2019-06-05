@@ -51,23 +51,21 @@ protected void setUp() {
 
         for(byte i = 0; i < validScheme.length; i++)
         {
-            assertTrue(validScheme[i] + validURL, urlVal.isValid(validScheme[i] + validURL));
             if(!urlVal.isValid(validScheme[i] + validURL))
             {
                 System.out.println("ERROR FOUND! This is a valid URL but is found to be invalid");
             }
+            assertTrue(validScheme[i] + validURL, urlVal.isValid(validScheme[i] + validURL));
         }
         for(byte j = 0; j < invalidScheme.length; j++)
         {
-            assertFalse(invalidScheme[j] + validURL, urlVal.isValid(invalidScheme[j] + validURL));
+
             if(urlVal.isValid(invalidScheme[j] + validURL))
             {
                 System.out.println("ERROR FOUND! This is an invalid URL but is found to be valid");
             }
+            assertFalse(invalidScheme[j] + validURL, urlVal.isValid(invalidScheme[j] + validURL));
         }
-
-
-
 
     }
 
