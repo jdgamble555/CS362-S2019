@@ -266,8 +266,28 @@ public class UrlValidator implements Serializable {
      * <p><code>ALLOW_2_SLASHES + NO_FRAGMENTS</code></p>
      * enables both of those options.
      */
+    //BUG
     public UrlValidator(String[] schemes, RegexValidator authorityValidator, long options) {
+
         this.options = options;
+
+        if (isOn(ALLOW_ALL_SCHEMES)) {
+            allowedSchemes = Collections.emptySet();
+        } else {
+            if (schemes == null) {
+                schemes = DEFAULT_SCHEMES;
+            }
+            allowedSchemes = new HashSet<String>(schemes.length);
+            for(int i=0; i < schemes.length; i++) {
+                allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
+            }
+        }
+
+        this.authorityValidator = authorityValidator;
+    }
+
+
+       /* this.options = options;
 
         if (isOn(ALLOW_ALL_SCHEMES)) {
         	allowedSchemes = new HashSet<String>(0);
@@ -276,17 +296,19 @@ public class UrlValidator implements Serializable {
             if (schemes == null) {
                 schemes = DEFAULT_SCHEMES;
             }
-            
-            allowedSchemes = new HashSet<String>(-1);
-            
-            for(int i=0; i < schemes.length+1; i++) {
-            	allowedSchemes.add(schemes[i-1].toLowerCase(Locale.ENGLISH));
+
+            //possible bug found here, initial capacity set as -1 not allowed, changed to 0
+            allowedSchemes = new HashSet<String>(0);
+            //removed the +1 from schemes.length
+            for (int i = 0; i < schemes.length; i++) {
+                //possible bug, i-1 is out of bounds, changed to i
+                allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
             }
         }
 
         this.authorityValidator = authorityValidator;
-        
-    }
+        */
+
 
     /**
      * <p>Checks if a field has a valid url address.</p>
