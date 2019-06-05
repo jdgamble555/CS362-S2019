@@ -38,6 +38,61 @@ protected void setUp() {
       }
    }
 
+    /*******************  UNIT TESTS ***********************/
+    public void testScheme()
+    {
+        //create valid and invalid scheme arrays to append to valid urls so that only the scheme is tested
+        String validScheme[] = {"http://","https://"};
+        String invalidScheme[] = {"http/:", "http//:", "0htp://", "ahtp://", "@#$%"};
+        System.out.println("Testing Scheme");
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        //valid url
+        String validURL = "www.amazon.com";
+
+        for(byte i = 0; i < validScheme.length; i++)
+        {
+            assertTrue(validScheme[i] + validURL, urlVal.isValid(validScheme[i] + validURL));
+
+        }
+        for(byte j = 0; j < invalidScheme.length; j++)
+        {
+            assertFalse(invalidScheme[j] + validURL, urlVal.isValid(invalidScheme[j] + validURL));
+        }
+
+
+
+
+    }
+
+    public void testAuthority()
+    {
+        System.out.println("Testing Authority");
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+
+    }
+
+    public void testPort()
+    {
+        System.out.println("Testing Port");
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+    }
+
+    public void testPath()
+    {
+        System.out.println("Testing Path");
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+    }
+
+    public void testQuery()
+    {
+        System.out.println("Testing Query");
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+
+    }
    public void testIsValid() {
         testIsValid(testUrlParts, UrlValidator.ALLOW_ALL_SCHEMES);
         setUp();
