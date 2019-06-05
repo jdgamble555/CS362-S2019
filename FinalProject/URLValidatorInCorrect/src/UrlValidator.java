@@ -365,7 +365,6 @@ public class UrlValidator implements Serializable {
 
         return true;
     }
-
     /**
      * Validate scheme. If schemes[] was initialized to a non null,
      * then only those schemes are allowed.
