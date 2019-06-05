@@ -135,14 +135,61 @@ protected void setUp() {
     public void testPath()
     {
         System.out.println("Testing Path");
+        String validPath[] = {"/file","/index", "/index/file"};
+        String invalidPath[] = {"111111", ":@#$%", "//"};
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        //valid scheme and valid authority
+        String validScheme= "http://";
+        String validURL = "amazon.com";
+
+        for(byte i = 0; i < validPath.length; i++)
+        {
+            if(!urlVal.isValid(validScheme + validURL + validPath[i]))
+            {
+                System.out.println("ERROR FOUND! This is a valid PATH but is found to be invalid");
+            }
+            assertTrue(validScheme + validURL + validPath[i], urlVal.isValid(validScheme + validURL + validPath[i]));
+
+        }
+        for(byte j = 0; j < invalidPath.length; j++) {
+
+            if (urlVal.isValid(validScheme + validURL + invalidPath[j])) {
+                System.out.println("ERROR FOUND! This is an invalid PATH but is found to be valid");
+            }
+            assertFalse(validScheme + validURL + invalidPath[j], urlVal.isValid(validScheme + validURL + invalidPath[j]));
+        }
+
 
     }
 
     public void testQuery()
     {
         System.out.println("Testing Query");
+        String validQuery[] = {"?action=hide","?action=view"};
+        String invalidQuery[] = {"111111", ":@#$%", "//"};
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        //valid scheme and valid authority
+        String validScheme= "http://";
+        String validURL = "amazon.com";
+
+        for(byte i = 0; i < validQuery.length; i++)
+        {
+            if(!urlVal.isValid(validScheme + validURL + validQuery[i]))
+            {
+                System.out.println("ERROR FOUND! This is a valid QUERY but is found to be invalid");
+            }
+            assertTrue(validScheme + validURL + validQuery[i], urlVal.isValid(validScheme + validURL + validQuery[i]));
+
+        }
+        for(byte j = 0; j < invalidQuery.length; j++) {
+
+            if (urlVal.isValid(validScheme + validURL + invalidQuery[j])) {
+                System.out.println("ERROR FOUND! This is an invalid QUERY but is found to be valid");
+            }
+            assertFalse(validScheme + validURL + invalidQuery[j], urlVal.isValid(validScheme + validURL + invalidQuery[j]));
+        }
 
 
     }
