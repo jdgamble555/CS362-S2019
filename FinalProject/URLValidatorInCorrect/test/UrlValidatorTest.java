@@ -41,7 +41,7 @@ protected void setUp() {
     /*******************  UNIT TESTS ***********************/
     public void testScheme()
     {
-        //create valid and invalid scheme arrays 
+        //create valid and invalid scheme arrays
         String validScheme[] = {"http://","https://"};
         String invalidScheme[] = {"http/:", "http//:", "0htp://", "@#$%"}; //figure out letter later if have time
         System.out.println("Testing Scheme");
@@ -104,7 +104,31 @@ protected void setUp() {
     public void testPort()
     {
         System.out.println("Testing Port");
+        //create valid and invalid port arrays
+        String validPort[] = {":80",":22"};
+        String invalidPort[] = {":::::", "111111", ":@#$%"};
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        //valid scheme and valid authority
+        String validScheme= "http://";
+        String validURL = "amazon.com";
+
+        for(byte i = 0; i < validPort.length; i++)
+        {
+            if(!urlVal.isValid(validScheme + validURL + validPort[i]))
+            {
+                System.out.println("ERROR FOUND! This is a valid PORT but is found to be invalid");
+            }
+            assertTrue(validScheme + validURL + validPort[i], urlVal.isValid(validScheme + validURL + validPort[i]));
+
+        }
+        for(byte j = 0; j < invalidPort.length; j++) {
+
+            if (urlVal.isValid(validScheme + validURL + invalidPort[j])) {
+                System.out.println("ERROR FOUND! This is an invalid PORT but is found to be valid");
+            }
+            assertFalse(validScheme + validURL + invalidPort[j], urlVal.isValid(validScheme + validURL + invalidPort[j]));
+        }
 
     }
 
