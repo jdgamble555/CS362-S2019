@@ -277,7 +277,7 @@ public class DomainValidator implements Serializable {
 
     // WARNING: this array MUST be sorted, otherwise it cannot be searched reliably using binary search
     private static final String[] INFRASTRUCTURE_TLDS = new String[] {
-        "arpa",               // internet infrastructure
+            "arpa",               // internet infrastructure
     };
 
     // WARNING: this array MUST be sorted, otherwise it cannot be searched reliably using binary search
@@ -1521,7 +1521,7 @@ public class DomainValidator implements Serializable {
         "zippo", // zippo Zadco Company
         "zone", // zone Outer Falls, LLC
         "zuerich", // zuerich Kanton Zürich (Canton of Zurich)
-};
+    };
 
     // WARNING: this array MUST be sorted, otherwise it cannot be searched reliably using binary search
     private static final String[] COUNTRY_CODE_TLDS = new String[] {
@@ -1824,8 +1824,8 @@ public class DomainValidator implements Serializable {
 
     // WARNING: this array MUST be sorted, otherwise it cannot be searched reliably using binary search
     private static final String[] LOCAL_TLDS = new String[] {
-       "localdomain",         // Also widely used as localhost.localdomain
-       "localhost",           // RFC2606 defined
+        "localdomain",         // Also widely used as localhost.localdomain
+        "localhost",           // RFC2606 defined
     };
 
     // Additional arrays to supplement or override the built in ones.
@@ -1835,7 +1835,7 @@ public class DomainValidator implements Serializable {
      * This field is used to detect whether the getInstance has been called.
      * After this, the method updateTLDOverride is not allowed to be called.
      * This field does not need to be volatile since it is only accessed from
-     * synchronized methods. 
+     * synchronized methods.
      */
     private static boolean inUse = false;
 
@@ -1924,25 +1924,25 @@ public class DomainValidator implements Serializable {
         }
         Arrays.sort(copy);
         switch(table) {
-        case COUNTRY_CODE_MINUS:
-            countryCodeTLDsMinus = copy;
-            break;
-        case COUNTRY_CODE_PLUS:
-            countryCodeTLDsPlus = copy;
-            break;
-        case GENERIC_MINUS:
-            genericTLDsMinus = copy;
-            break;
-        case GENERIC_PLUS:
-            genericTLDsPlus = copy;
-            break;
-        case COUNTRY_CODE_RO:
-        case GENERIC_RO:
-        case INFRASTRUCTURE_RO:
-        case LOCAL_RO:
-            throw new IllegalArgumentException("Cannot update the table: " + table);
-        default:
-            throw new IllegalArgumentException("Unexpected enum value: " + table);
+            case COUNTRY_CODE_MINUS:
+                countryCodeTLDsMinus = copy;
+                break;
+            case COUNTRY_CODE_PLUS:
+                countryCodeTLDsPlus = copy;
+                break;
+            case GENERIC_MINUS:
+                genericTLDsMinus = copy;
+                break;
+            case GENERIC_PLUS:
+                genericTLDsPlus = copy;
+                break;
+            case COUNTRY_CODE_RO:
+            case GENERIC_RO:
+            case INFRASTRUCTURE_RO:
+            case LOCAL_RO:
+                throw new IllegalArgumentException("Cannot update the table: " + table);
+            default:
+                throw new IllegalArgumentException("Unexpected enum value: " + table);
         }
     }
 
@@ -1956,32 +1956,32 @@ public class DomainValidator implements Serializable {
     public static String [] getTLDEntries(ArrayType table) {
         final String array[];
         switch(table) {
-        case COUNTRY_CODE_MINUS:
-            array = countryCodeTLDsMinus;
-            break;
-        case COUNTRY_CODE_PLUS:
-            array = countryCodeTLDsPlus;
-            break;
-        case GENERIC_MINUS:
-            array = genericTLDsMinus;
-            break;
-        case GENERIC_PLUS:
-            array = genericTLDsPlus;
-            break;
-        case GENERIC_RO:
-            array = GENERIC_TLDS;
-            break;
-        case COUNTRY_CODE_RO:
-            array = COUNTRY_CODE_TLDS;
-            break;
-        case INFRASTRUCTURE_RO:
-            array = INFRASTRUCTURE_TLDS;
-            break;
-        case LOCAL_RO:
-            array = LOCAL_TLDS;
-            break;
-        default:
-            throw new IllegalArgumentException("Unexpected enum value: " + table);
+            case COUNTRY_CODE_MINUS:
+                array = countryCodeTLDsMinus;
+                break;
+            case COUNTRY_CODE_PLUS:
+                array = countryCodeTLDsPlus;
+                break;
+            case GENERIC_MINUS:
+                array = genericTLDsMinus;
+                break;
+            case GENERIC_PLUS:
+                array = genericTLDsPlus;
+                break;
+            case GENERIC_RO:
+                array = GENERIC_TLDS;
+                break;
+            case COUNTRY_CODE_RO:
+                array = COUNTRY_CODE_TLDS;
+                break;
+            case INFRASTRUCTURE_RO:
+                array = INFRASTRUCTURE_TLDS;
+                break;
+            case LOCAL_RO:
+                array = LOCAL_TLDS;
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected enum value: " + table);
         }
         return Arrays.copyOf(array, array.length); // clone the array
     }
@@ -1989,7 +1989,7 @@ public class DomainValidator implements Serializable {
     /**
      * Converts potentially Unicode input to punycode.
      * If conversion fails, returns the original input.
-     * 
+     *
      * @param input the string to convert, not null
      * @return converted input, or original input if conversion fails
      */
