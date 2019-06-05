@@ -41,9 +41,9 @@ protected void setUp() {
     /*******************  UNIT TESTS ***********************/
     public void testScheme()
     {
-        //create valid and invalid scheme arrays to append to valid urls so that only the scheme is tested
+        //create valid and invalid scheme arrays 
         String validScheme[] = {"http://","https://"};
-        String invalidScheme[] = {"http/:", "http//:", "0htp://", "ahtp://", "@#$%"};
+        String invalidScheme[] = {"http/:", "http//:", "0htp://", "@#$%"}; //figure out letter later if have time
         System.out.println("Testing Scheme");
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         //valid url
@@ -56,6 +56,7 @@ protected void setUp() {
                 System.out.println("ERROR FOUND! This is a valid URL but is found to be invalid");
             }
             assertTrue(validScheme[i] + validURL, urlVal.isValid(validScheme[i] + validURL));
+
         }
         for(byte j = 0; j < invalidScheme.length; j++)
         {
@@ -72,7 +73,30 @@ protected void setUp() {
     public void testAuthority()
     {
         System.out.println("Testing Authority");
+        //create valid and invalid authority arrays
+        String validAuthority[] = {"google.com","amazon.com", "www.google.com", "www.amazon.com"};
+        String invalidAuthority[] = {"google", "amazon", "111111", "@#$%", "10.10.10"};
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        //valid scheme
+        String validScheme= "http://";
+
+        for(byte i = 0; i < validAuthority.length; i++)
+        {
+            if(!urlVal.isValid(validScheme + validAuthority[i]))
+            {
+                System.out.println("ERROR FOUND! This is a valid AUTHORITY but is found to be invalid");
+            }
+            assertTrue(validScheme + validAuthority[i], urlVal.isValid(validScheme + validAuthority[i]));
+
+        }
+        for(byte j = 0; j < invalidAuthority.length; j++) {
+
+            if (urlVal.isValid(validScheme + invalidAuthority[j])) {
+                System.out.println("ERROR FOUND! This is an invalid AUTHORITY but is found to be valid");
+            }
+            assertFalse(validScheme + invalidAuthority[j], urlVal.isValid(validScheme + invalidAuthority[j]));
+        }
 
 
     }
